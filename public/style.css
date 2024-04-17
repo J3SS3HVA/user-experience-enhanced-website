@@ -117,7 +117,7 @@ article {
 }
 
 .index ul li img {
-  width: 30%;
+  /* width: 150px; */
 }
 
 .index ul li a div{
@@ -129,9 +129,6 @@ article {
   font-size: 1em;
 }
 
-.index ul li a div p{
-  font-size: 0.5em;
-}
 
 @media (min-width: 80em) {
   .index ul {
@@ -166,8 +163,8 @@ article {
   }
 
   .index ul li img {
-    width: 300px;
-    height: 400px;
+    /* width: 300px;
+    height: 400px; */
     object-fit: cover;
   }
 
@@ -311,7 +308,8 @@ article {
 }
 
 .detail .detail-img {
-  width: 97%;
+  width: 97%; 
+  height: auto;
 }
 
 .item-info {
@@ -419,7 +417,9 @@ article {
 
   .detail .detail-img {
     grid-area: image;
-    width: 500px;
+    /* width: 500px; */
+    width: unset;
+    max-width: 100%;
   }
 
   .item-info {
@@ -459,7 +459,7 @@ article {
 }
 
 .leeslijst ul li img {
-  width: 30%;
+  /* width: 30%; */
 }
 
 @media (width > 80em) {
@@ -477,8 +477,8 @@ article {
   }
 
   .leeslijst ul li img{
-    width: 300px;
-    height: 400px;
+    /* width: 300px;
+    height: 400px; */
     object-fit: cover;
   }
 }
