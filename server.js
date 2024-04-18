@@ -79,16 +79,18 @@ app.get('/family', async function(request, response) {
   });
 
 
-app.get('/detail/:id', function(request, response){
+  app.get('/detail/:id', function(request, response){
     console.log(request.params)
-    fetchJson(apiItem + '?filter={"id":' + request.params.id + '}').then((items) => {
+    const id = request.params.id;
+
+    fetchJson(apiItem + '?filter={"id":' + id + '}').then((items) => {
         response.render('detail', {
-            
-            items: items.data/*hier zeg ik dat iedereen getoond moet worden*/
-          
+            items: items.data,
+            bookmarkFill: request.query.added ? 'currentColor' : 'none'
         });
-    })
-})
+    });
+});
+
 
 app.post('/detail/:id', function(request, response){
      // Er is nog geen afhandeling van POST, redirect naar GET op /

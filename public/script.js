@@ -37,7 +37,6 @@ function bookMark() {
     
     // Controleer of de URL het "added=true" query parameter bevat
     if (currentUrl.includes("added=true")) {
-        // Dynamisch de tekst van de knop instellen
         listpopup.classList.add("show");
         filter.classList.toggle('filter-active');
 
