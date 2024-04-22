@@ -10,7 +10,7 @@
         <% items.filter(item => item.item_type === 'book').forEach(book => { %>
         <li>
             <a href="./detail/<%= book.id %> ">
-              <img src="https://fdnd-agency.directus.app/assets/<%= book.afbeelding %>" alt="<%= book.title %> Image" height="300" width="200">
+              <img src="https://fdnd-agency.directus.app/assets/<%= book.afbeelding %>" alt="<%= book.title %> Image" height="300" width="200" loading="lazy">
               <div>
                 <p><%= book.auteur %></p>
               </div>           
@@ -23,7 +23,7 @@
         <% items.filter(item => item.item_type === 'cd').forEach(cd => { %>
         <li>
             <a href="./detail/<%= cd.id %>">
-              <img src="https://fdnd-agency.directus.app/assets/<%= cd.afbeelding %>" alt="<%= cd.title %> Image" height="300" width="200">
+              <img src="https://fdnd-agency.directus.app/assets/<%= cd.afbeelding %>" alt="<%= cd.title %> Image" height="300" width="200" loading="lazy">
               <div>
                 <p><%= cd.auteur %></p>
               </div>           
@@ -36,7 +36,7 @@
         <% items.filter(item => item.item_type === 'activity').forEach(activity => { %>
         <li>
             <a href="./detail/<%= activity.id %>">
-              <img src="https://fdnd-agency.directus.app/assets/<%= activity.afbeelding %>" alt="<%= activity.title %> Image" height="300" width="200">
+              <img src="https://fdnd-agency.directus.app/assets/<%= activity.afbeelding %>" alt="<%= activity.title %> Image" height="300" width="200" loading="lazy">
               <div>
                 <p><%= activity.datetime %></p>
               </div>           

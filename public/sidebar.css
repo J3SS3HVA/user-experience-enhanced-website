@@ -23,11 +23,20 @@
     display: flex;
     align-items: center;
     margin-top: 10px;
+    overflow: hidden;
 
     &:nth-child(1){
         margin-top: 0;
     }
 }
+
+ .notification{
+    animation: notify;
+    animation-duration: 1.5s;
+    animation-iteration-count: 3;
+    animation-direction: alternate;
+}
+
 
 .sidebar header .image,
 .sidebar .icon{
@@ -184,10 +193,6 @@ body.dark .sidebar header .toggle{
 .sidebar li a:hover .text{
     color: var(--sidebar-color);
 }
-body.dark .sidebar li a:hover .icon,
-body.dark .sidebar li a:hover .text{
-    color: var(--text-color);
-}
 
 .sidebar .menu-bar{
     height: calc(100% - 55px);
@@ -299,3 +304,18 @@ body.dark .home .text{
       
     }
   }
+
+  @keyframes notify {
+    0% {
+        background-color: transparent;
+        color: var(--text-color);
+    }
+    50% {
+        background-color: var(--primary-color);
+        color: var(--primary-color-light);
+    }
+    100% {
+        background-color: transparent;
+        color: var(--text-color);
+    }
+}

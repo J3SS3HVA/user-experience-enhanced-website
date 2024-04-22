@@ -1,5 +1,4 @@
 <%- include('./partials/head') %>
-<div class="filter"></div>
 <main class="detail">
     <% items.forEach(item => { %>
   <div>
@@ -16,8 +15,8 @@
   </div>
     <article class="item-info">
       <h2><%= item.title %></h2>
-      <p><b>Sammenvatting:</b>
-        <%- item.description %></p>
+      <span><b>Sammenvatting:</b>
+        <%- item.description %></span>
         <!-- <p><b>type: </b><%= item.type %></p>
         <p><b>oba link: </b><%= item.oba_link %></p>
         <p><b>uitgever: </b><%= item.publisher %></p>
@@ -42,12 +41,6 @@
           </fieldset>
       </form>
     </article>
-    <dialog class="item-added">
-      <button><i class='bx bx-x'></i></button>
-      <%= item.title %>
-      <img src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>" alt=""/>
-      <a href="/leeslijst">Bekijk je lijst</a>
-    </dialog>
     <% }) %>
 </main>
 

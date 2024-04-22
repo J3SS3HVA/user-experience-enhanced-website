@@ -20,16 +20,11 @@ modeSwitch.addEventListener("click" , () =>{
     }
 });
 
-const listpopup = body.querySelector(".item-added") 
-const closelist = body.querySelector(".item-added button") 
+
 const currentUrl = window.location.href;
 const button = document.querySelector(".add");
-const filter = document.querySelector('.filter')
-
-closelist.addEventListener("click" , () =>{
-    listpopup.classList.add("closed");
-    filter.classList.remove('filter-active')
-})
+const notification = document.querySelector('.sidebar li:nth-child(2) a');
+const notificationIcon = document.querySelector('.sidebar li:nth-child(2) a i');
 
 
 function bookMark() {
@@ -37,10 +32,9 @@ function bookMark() {
     
     // Controleer of de URL het "added=true" query parameter bevat
     if (currentUrl.includes("added=true")) {
-        listpopup.classList.add("show");
-        filter.classList.toggle('filter-active');
-
         // SVG-icoon aanpassen
+        notification.classList.add("notification")
+        notificationIcon.classList.add("notification")
         const svgIcon = document.querySelector(".bi-bookmark-fill");
 
         // Verander de fill kleur naar currentColor (wit in dit geval)
