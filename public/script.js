@@ -52,3 +52,11 @@ function bookMark() {
 bookMark()
 
   
+const infoButton = document.querySelector(".info-button")
+const infoArrow = document.querySelector(".info-button i")
+const infoMenu = document.querySelector(".item-info")
+
+infoButton.addEventListener("click", () =>{
+    infoMenu.classList.toggle("openMenu");
+    infoArrow.classList.toggle("rotate")
+})
