@@ -1,3 +1,18 @@
+@font-face {
+  font-family: AvenirRoman;
+  src: url(../fonts/Avenir-roman.ttf);
+}
+
+@font-face {
+  font-family: AvenirMedium;
+  src: url(../fonts/Avenir-medium.ttf);
+}
+
+@font-face {
+  font-family: AvenirBlack;
+  src: url(../fonts/Avenir\ -black.ttf);
+}
+
 :root {
   /* ===== Colors ===== */
   --body-color: #e4e9f7;
@@ -18,21 +33,6 @@
   --overal-padding: 2em 0 0 5.5em;
 }
 
-@font-face {
-  font-family: AvenirRoman;
-  src: url(../font/Avenir-roman.ttf);
-}
-
-@font-face {
-  font-family: AvenirMedium;
-  src: url(../font/Avenir-medium.ttf);
-}
-
-@font-face {
-  font-family: AvenirBlack;
-  src: url(../font/Avenir\ -black.ttf);
-}
-
 /* general ejs styling */
 
 ::selection {
@@ -44,8 +44,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
   line-height: 1.5;
+  font-family: AvenirMedium;
 }
 
 html {
@@ -56,7 +56,7 @@ body {
   min-height: 100%;
   background-color: var(--body-color);
   transition: var(--tran-05);
-  font-family: AvenirMedium;
+  font-family: "Poppins", sans-serif;
 }
 
 body.dark {
@@ -136,7 +136,7 @@ img {
     display: flex;
     align-items: flex-end;
     gap: 2em;
-    scrollbar-color: red transparent;
+    scrollbar-color: var(--primary-color) transparent;
     scrollbar-width: thin;
     scroll-snap-type: x mandatory;
   }
