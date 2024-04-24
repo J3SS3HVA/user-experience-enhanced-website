@@ -1,16 +1,18 @@
 <%- include('./partials/head') %>
 <main class="index">
-  <article>
-    <h2>Boeken</h2>
-  
       <i class='bx bx-search icon'></i>
       <input type="text" placeholder="Zoek...">
-    
+    <section>
+      <h2>Boeken</h2>
     <ul>
         <% items.filter(item => item.item_type === 'book').forEach(book => { %>
         <li>
             <a href="./detail/<%= book.id %> ">
-              <img src="https://fdnd-agency.directus.app/assets/<%= book.afbeelding %>" alt="<%= book.title %> Image" height="300" width="200" loading="lazy">
+              <picture>
+                <source srcset="https://fdnd-agency.directus.app/assets/<%= book.afbeelding.id %>?&format=avif" type="image/avif">
+                <source srcset="https://fdnd-agency.directus.app/assets/<%= book.afbeelding.id %>?&format=webp" type="image/webp" >
+                <img src="https://fdnd-agency.directus.app/assets/<%= book.afbeelding.id %>" alt="<%= book.title %> Image" height="<%= book.afbeelding.height %>" width="<%= book.afbeelding.width %>">
+              </picture>
               <div>
                 <p><%= book.auteur %></p>
               </div>           
@@ -18,12 +20,18 @@
         </li>        
         <% }); %>
     </ul>
+  </section>
+  <section>
     <h2>CD's</h2>
     <ul>
         <% items.filter(item => item.item_type === 'cd').forEach(cd => { %>
         <li>
             <a href="./detail/<%= cd.id %>">
-              <img src="https://fdnd-agency.directus.app/assets/<%= cd.afbeelding %>" alt="<%= cd.title %> Image" height="300" width="200" loading="lazy">
+              <picture>
+                <source srcset="https://fdnd-agency.directus.app/assets/<%= cd.afbeelding.id %>?&format=avif" type="image/avif">
+                <source srcset="https://fdnd-agency.directus.app/assets/<%= cd.afbeelding.id %>?&format=webp" type="image/webp">
+                <img src="https://fdnd-agency.directus.app/assets/<%= cd.afbeelding.id %>" alt="<%= cd.title %> Image" height="<%= cd.afbeelding.height %>" width="<%= cd.afbeelding.height %>">
+              </picture>
               <div>
                 <p><%= cd.auteur %></p>
               </div>           
@@ -31,12 +39,18 @@
         </li>
         <% }); %>
     </ul>
+  </section>
+  <section>
     <h2>Activiteiten</h2>
     <ul>
         <% items.filter(item => item.item_type === 'activity').forEach(activity => { %>
         <li>
             <a href="./detail/<%= activity.id %>">
-              <img src="https://fdnd-agency.directus.app/assets/<%= activity.afbeelding %>" alt="<%= activity.title %> Image" height="300" width="200" loading="lazy">
+              <picture>
+                <source srcset="https://fdnd-agency.directus.app/assets/<%= activity.afbeelding.id %>?&format=avif" type="image/avif">
+                <source srcset="https://fdnd-agency.directus.app/assets/<%= activity.afbeelding.id %>?&format=webp" type="image/webp">
+                <img src="https://fdnd-agency.directus.app/assets/<%= activity.afbeelding.id %>" alt="<%= activity.title %> Image" height="<%= activity.afbeelding.height %>" width="<%= activity.afbeelding.height %>" loading="lazy">
+              </picture>
               <div>
                 <p><%= activity.datetime %></p>
               </div>           
@@ -44,6 +58,6 @@
         </li>
         <% }); %>
     </ul>
-  </article>
+  </section>
 </main>
 <%- include('./partials/foot') %>

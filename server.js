@@ -9,7 +9,7 @@ import fetchJson from './helpers/fetch-json.js'
 const apiUrl = "https://fdnd-agency.directus.app/items/"
 const apiFamily = (apiUrl + 'oba_family')
 const apiProfile = (apiUrl + 'oba_profile')
-const apiItem = (apiUrl + 'oba_item')
+const apiItem = (apiUrl + 'oba_item?fields=*,afbeelding.id,afbeelding.height,afbeelding.width')
 
 
 // Maak een nieuwe express app aan
@@ -37,10 +37,12 @@ app.get('/', async function(request, response) {
 
     // Wacht tot beide fetch-aanroepen zijn voltooid
     const [items, families, profiles] = await Promise.all([itemsPromise, familiesPromise, profilesPromise]);
-
-    console.log("Items:", items);
-    console.log("Families:", families);
-    console.log("Profiles:", profiles);
+    items.data.map(item=>{
+      console.log(item);
+    })
+    // console.log("Items:", items);
+    // console.log("Families:", families);
+    // console.log("Profiles:", profiles);
 
     // Controleer of de respons geldig is
     if (items && items.data && families && families.data && profiles && profiles.data) {
@@ -65,8 +67,8 @@ app.get('/family', async function(request, response) {
       const families = await fetchJson(apiFamily);
       const profiles = await fetchJson(apiProfile);
   
-      console.log(families.data);
-      console.log(profiles.data);
+      // console.log(families.data);
+      // console.log(profiles.data);
   
       response.render('family', {
         families: families.data,
@@ -80,7 +82,7 @@ app.get('/family', async function(request, response) {
 
 
   app.get('/detail/:id', function(request, response){
-    console.log(request.params)
+    // console.log(request.params)
     const id = request.params.id;
 
     fetchJson(apiItem + '?filter={"id":' + id + '}').then((items) => {
@@ -99,7 +101,7 @@ app.post('/detail/:id', function(request, response){
 
   // Voeg het bericht toe aan de messages array
   leeslijst[id] = true;
-  console.log(leeslijst)
+  // console.log(leeslijst)
 
   // Redirect naar de GET route voor de specifieke persoon met het bijgewerkte bericht
   // '/person/' + id zorgt ervoor dat hij redirect naar waar je de message hebt aangemaakt. 
