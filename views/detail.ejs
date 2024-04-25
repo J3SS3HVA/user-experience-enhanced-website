@@ -2,8 +2,9 @@
 <main class="detail">
     <% items.forEach(item => { %>
   <div>
-    <img class="detail-img" src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>" alt="" width="500" height="900">
-    <form action="/detail/<%= item.id %>" method="post">
+    <img class="detail-img" src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding.id %>" alt="" width="500" height="900">
+    <form action="/detail/<%= item.id %>" method="post" class="save">
+      <input type="hidden" name="savedItem" value="<%= item.id %>">
       <button class="add">
           <!-- SVG icon -->
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="<%= bookmarkFill %>" stroke="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16" data-id="<%= item.id %>">

@@ -38,7 +38,7 @@ app.get('/', async function(request, response) {
     // Wacht tot beide fetch-aanroepen zijn voltooid
     const [items, families, profiles] = await Promise.all([itemsPromise, familiesPromise, profilesPromise]);
     items.data.map(item=>{
-      console.log(item);
+      // console.log(item);
     })
     // console.log("Items:", items);
     // console.log("Families:", families);
@@ -53,11 +53,11 @@ app.get('/', async function(request, response) {
         profiles: profiles.data
       });
     } else {
-      console.error("Invalid or unexpected API response format");
+      // console.error("Invalid or unexpected API response format");
       response.status(500).send("Internal Server Error");
     }
   } catch (error) {
-    console.error("Error fetching data:", error);
+    // console.error("Error fetching data:", error);
     response.status(500).send("Internal Server Error");
   }
 });
@@ -75,7 +75,7 @@ app.get('/family', async function(request, response) {
         profiles: profiles.data,
       });
     } catch (error) {
-      console.error('Error fetching data:', error);
+      // console.error('Error fetching data:', error);
       response.status(500).send('Internal Server Error');
     }
   });
@@ -85,7 +85,7 @@ app.get('/family', async function(request, response) {
     // console.log(request.params)
     const id = request.params.id;
 
-    fetchJson(apiItem + '?filter={"id":' + id + '}').then((items) => {
+    fetchJson(apiItem + '&filter={"id":' + id + '}').then((items) => {
         response.render('detail', {
             items: items.data,
             bookmarkFill: request.query.added ? 'currentColor' : 'none'
@@ -105,7 +105,11 @@ app.post('/detail/:id', function(request, response){
 
   // Redirect naar de GET route voor de specifieke persoon met het bijgewerkte bericht
   // '/person/' + id zorgt ervoor dat hij redirect naar waar je de message hebt aangemaakt. 
+  if (request.body.enhanced) {
+    response.render('/detail/' + id + '?added=true');
+  } else {
   response.redirect(303, '/detail/' + id + '?added=true');
+  }
 });
   
 
@@ -131,7 +135,7 @@ app.get('/leeslijst', function(request, response) {
           response.render('leeslijst_empty');
       }
   }).catch((error) => {
-      console.error("Error fetching items:", error);
+      // console.error("Error fetching items:", error);
       response.status(500).send("Internal Server Error");
   });
 });
