@@ -335,6 +335,11 @@ img {
   margin: auto 0;
   z-index: 3;
   grid-row-start: 5;
+  display: none;
+}
+
+.js .info-button{
+  display: block;
 }
 
 .info-button i {
@@ -359,12 +364,16 @@ img {
   grid-template-rows: 1fr 2fr 1fr 1fr;
   justify-content: center;
   justify-items: center;
-  position: fixed;
+  position: absolute;
   inset: 0 0 0 88px;
   z-index: 2;
   padding: 2em;
   transform: translateY(100%);
   transition: 0.3s;
+}
+
+.js .item-info {
+  position: fixed;
 }
 
 .item-info.openMenu {

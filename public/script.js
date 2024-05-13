@@ -1,3 +1,11 @@
+// Selecteer het <html> element
+const htmlElement = document.documentElement;
+
+// Voeg de class "js" toe aan het <html> element
+htmlElement.classList.add("js");
+
+
+
 const body = document.querySelector('body'),
 sidebar = body.querySelector('nav'),
 toggle = body.querySelector(".toggle"),
