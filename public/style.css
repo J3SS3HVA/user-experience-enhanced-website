@@ -353,6 +353,7 @@ img {
 } */
 
 .item-info {
+  background-color: #fff;
   background-color: var(--sidebar-color);
   display: grid;
   grid-template-rows: 1fr 2fr 1fr 1fr;

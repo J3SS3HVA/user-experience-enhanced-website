@@ -106,7 +106,7 @@ app.post('/detail/:id', function(request, response){
   // Redirect naar de GET route voor de specifieke persoon met het bijgewerkte bericht
   // '/person/' + id zorgt ervoor dat hij redirect naar waar je de message hebt aangemaakt. 
   if (request.body.enhanced) {
-    response.render('/detail/' + id + '?added=true');
+    response.render('detail', {added:true});
   } else {
   response.redirect(303, '/detail/' + id + '?added=true');
   }
