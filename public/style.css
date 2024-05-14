@@ -487,6 +487,10 @@ img {
     display: none;
   }
 
+  .js .info-button{
+    display: none;
+  }
+
   .item-info {
     position: static;
     transform: translateY(0%);
@@ -496,6 +500,10 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .js .item-info{
+    position: static;
   }
 
   .item-info h2 {
