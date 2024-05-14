@@ -101,11 +101,11 @@ app.post('/detail/:id', function(request, response){
   fetch(`${apiUrl}/oba_bookmarks/` , {
       method: 'POST',
       body: JSON.stringify({
-        item: request.params.id
+        item: request.params.id,
       }),
       headers: {
-        'Content-Type': 'application/json; charset=UTF-8'
-      }
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
     }).then((postResponse) => {
       // Redirect naar de persoon pagina
       if (request.body.enhanced) {
