@@ -95,49 +95,91 @@ app.get('/family', async function(request, response) {
 
 
 app.post('/detail/:id', function(request, response){
-     // Er is nog geen afhandeling van POST, redirect naar GET op /
+
   const id = request.params.id;
-  
 
-  // Voeg het bericht toe aan de messages array
-  leeslijst[id] = true;
-  // console.log(leeslijst)
-
-  // Redirect naar de GET route voor de specifieke persoon met het bijgewerkte bericht
-  // '/person/' + id zorgt ervoor dat hij redirect naar waar je de message hebt aangemaakt. 
-  if (request.body.enhanced) {
-    response.render('detail', {added:true});
-  } else {
-  response.redirect(303, '/detail/' + id + '?added=true');
-  }
+  fetch(`${apiUrl}/oba_bookmarks/` , {
+      method: 'POST',
+      body: JSON.stringify({
+        item: request.params.id
+      }),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      }
+    }).then((postResponse) => {
+      // Redirect naar de persoon pagina
+      if (request.body.enhanced) {
+          response.render('detail', {added:true});
+        } else {
+        response.redirect(303, '/detail/' + id + '?added=true')
+    }
+  })
 });
+
+  //    // Er is nog geen afhandeling van POST, redirect naar GET op /
+  // const id = request.params.id;
+  
+  
+  // // Voeg het bericht toe aan de messages array
+  // leeslijst[id] = true;
+  // // console.log(leeslijst)
+
+  // // Redirect naar de GET route voor de specifieke persoon met het bijgewerkte bericht
+  // // '/person/' + id zorgt ervoor dat hij redirect naar waar je de message hebt aangemaakt. 
+  // if (request.body.enhanced) {
+  //   response.render('detail', {added:true});
+  // } else {
+  // response.redirect(303, '/detail/' + id + '?added=true');
+  // }
+// });
   
 
 app.get('/leeslijst', function(request, response) {
-  fetchJson(apiItem).then((items) => {
+
+  let leeslijstFetch =  `${apiUrl}oba_bookmarks?fields=*.*`
+
+  fetchJson(leeslijstFetch)
+  .then(({data}) => {
+    return data.map((bookmark) =>{
+      return bookmark.item
+    })
+  })
+  .then(itemsOpLeeslijst => {
+    if (itemsOpLeeslijst.length) {
+              response.render('leeslijst', {
+                  items: itemsOpLeeslijst
+              });
+          } else {
+              // Render lege staat (empty state)
+              response.render('leeslijst_empty');
+          }
+  })
+
+  // fetchJson(apiItem).then((items) => {
       
-      let itemsOpLeeslijst = []
-      // Loop door alle items.data,
-      // Kijk of het id van dat item in de leeslijst staat
-      // Voeg in dat geval dat item toe aan itemsOpLeeslijst
-      items.data.forEach(function(item) {
-        if (leeslijst[item.id]) {
-          itemsOpLeeslijst.push(item)
-        }
-      })
+      
+  //     let itemsOpLeeslijst = []
+  //     // Loop door alle items.data,
+  //     // Kijk of het id van dat item in de leeslijst staat
+  //     // Voeg in dat geval dat item toe aan itemsOpLeeslijst
+  //     items.data.forEach(function(item) {
+  //       if (leeslijst[item.id]) {
+  //         itemsOpLeeslijst.push(item)
+  //       }
+  //     })
   
-      if (itemsOpLeeslijst.length) {
-          response.render('leeslijst', {
-              items: itemsOpLeeslijst
-          });
-      } else {
-          // Render lege staat (empty state)
-          response.render('leeslijst_empty');
-      }
-  }).catch((error) => {
-      // console.error("Error fetching items:", error);
-      response.status(500).send("Internal Server Error");
-  });
+  //     if (itemsOpLeeslijst.length) {
+  //         response.render('leeslijst', {
+  //             items: itemsOpLeeslijst
+  //         });
+  //     } else {
+  //         // Render lege staat (empty state)
+  //         response.render('leeslijst_empty');
+  //     }
+  // }).catch((error) => {
+  //     // console.error("Error fetching items:", error);
+  //     response.status(500).send("Internal Server Error");
+  // });
 });
 
 // 3. Start de webserver
